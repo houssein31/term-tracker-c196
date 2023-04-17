@@ -43,7 +43,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.My
         holder.tvCourseInstructorName.setText(this.courseList.get(position).getCourseInstructorName());
 //        holder.tvCourseInstructorEmail.setText(this.courseList.get(position).getCourseInstructorEmail());
 //        holder.tvCourseInstructorPhone.setText(this.courseList.get(position).getCourseInstructorPhone());
-//        holder.tvCourseStatus.setText(this.courseList.get(position).getCourseStatus());
+        holder.tvCourseStatus.setText(this.courseList.get(position).getCourseStatus());
 //        holder.tvCourseStartDate.setText(this.courseList.get(position).getCourseStartDate());
 //        holder.tvCourseEndDate.setText(this.courseList.get(position).getCourseEndDate());
 //        holder.tvCourseNote.setText(this.courseList.get(position).getCourseNote());

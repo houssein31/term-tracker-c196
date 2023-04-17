@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddNewTermActivity">
+    tools:context=".AddNewTerm">
 
     <EditText
         android:id="@+id/termTitleInput"
@@ -14,35 +14,55 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="10dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
 
     />
 
-    <EditText
-        android:id="@+id/startDateInput"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textViewtermStartDate"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter Start Date"
-        android:ems="10"
-        android:inputType="date"
+        android:layout_marginTop="30dp"
+        android:text="Select Start Date:"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@id/termTitleInput"
+        app:layout_constraintTop_toBottomOf="@+id/termTitleInput" />
 
-    />
-
-    <EditText
-        android:id="@+id/endDateInput"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/termStartDatePickerButton"
+        style="?android:spinnerStyle"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:hint="Enter End Date"
-        android:ems="10"
-        android:inputType="date"
+        android:onClick="openTermStartDatePicker"
+        android:text="JAN 01 2020"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/startDateInput"
+        app:layout_constraintTop_toBottomOf="@+id/textViewtermStartDate" />
 
-    />
+    <TextView
+        android:id="@+id/textViewtermEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Select End Date:"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/termStartDatePickerButton" />
+
+    <Button
+        android:id="@+id/termEndDatePickerButton"
+        style="?android:spinnerStyle"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:onClick="openTermEndDatePicker"
+        android:text="JAN 01 2020"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewtermEndDate" />
+
 
     <Button
         android:id="@+id/saveButton"

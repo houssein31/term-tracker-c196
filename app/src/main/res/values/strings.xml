@@ -1,4 +1,9 @@
-
 <resources>
     <string name="app_name">Term Tracker c196</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="inProgress">In Progress</string>
+    <string name="completed">Completed</string>
+    <string name="performance">Performance</string>
+    <string name="objective"> Objective</string>
+    <string name="save_button">Save</string>
 </resources>

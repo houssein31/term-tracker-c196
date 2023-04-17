@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddNewCourse">
+    tools:context=".EditCourse">
 
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -113,7 +114,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/courseInstructorPhoneInput" />
 
                 <RadioGroup
-                    android:id="@+id/status_radiogroup"
+                    android:id="@+id/status_course_radiogroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
@@ -122,21 +123,21 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView_course_status">
 
                     <RadioButton
-                        android:id="@+id/radio_upcoming"
+                        android:id="@+id/radio_course_upcoming"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
                         android:text="@string/upcoming" />
 
                     <RadioButton
-                        android:id="@+id/radio_in_progress"
+                        android:id="@+id/radio_course_in_progress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
                         android:text="@string/inProgress" />
 
                     <RadioButton
-                        android:id="@+id/radio_completed"
+                        android:id="@+id/radio_course_completed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
@@ -242,6 +243,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/courseNoteInput" />
 
+
             </LinearLayout>
 
         </ScrollView>
@@ -252,9 +254,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:text="Save"/>
+            android:text="Save" />
 
     </RelativeLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

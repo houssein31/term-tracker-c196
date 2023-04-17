@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tvCourseTitle"
+        android:id="@+id/tvAssessmentTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="05dp"
@@ -15,7 +15,7 @@
         />
 
     <TextView
-        android:id="@+id/tvCourseInstructorName"
+        android:id="@+id/tvAssessmentEndDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="05dp"
@@ -24,7 +24,7 @@
         />
 
     <TextView
-        android:id="@+id/tvCourseStatus"
+        android:id="@+id/tvAssessmentStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="05dp"

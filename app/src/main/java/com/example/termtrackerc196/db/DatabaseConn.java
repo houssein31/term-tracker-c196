@@ -6,16 +6,19 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.termtrackerc196.db.DAOs.AssessmentDAO;
 import com.example.termtrackerc196.db.DAOs.CourseDAO;
 import com.example.termtrackerc196.db.DAOs.TermDAO;
+import com.example.termtrackerc196.db.Entities.Assessment;
 import com.example.termtrackerc196.db.Entities.Course;
 import com.example.termtrackerc196.db.Entities.Term;
 
-@Database(entities = {Term.class, Course.class}, version = 1)
+@Database(entities = {Term.class, Course.class, Assessment.class}, version = 1)
 public abstract class DatabaseConn extends RoomDatabase {
 
-    public abstract TermDAO getTermsDao();
+    public abstract TermDAO getTermDao();
     public abstract CourseDAO getCourseDao();
+    public abstract AssessmentDAO getAssessmentDao();
 
     private static DatabaseConn INSTANCE;
 

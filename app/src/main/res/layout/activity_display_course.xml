@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DisplayCourse">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/courseTitlelabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:text="Course Title:"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                android:id="@+id/courseTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                    android:textStyle="bold"
+                android:text="CourseTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/courseTitlelabelTextView"
+                    tools:layout_editor_absoluteX="134dp" />
+
+                <TextView
+                    android:id="@+id/termlabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:text="Term:"
+                    app:layout_constraintTop_toBottomOf="@+id/courseTitleTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+                <TextView
+                android:id="@+id/termTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="TermTitle"
+                app:layout_constraintTop_toBottomOf="@+id/termlabelTextView"
+                tools:layout_editor_absoluteX="134dp" />
+
+
+
+                <TextView
+                    android:id="@+id/courseInstructorNameLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:text="Course Instructor Name:"
+                    app:layout_constraintTop_toBottomOf="@+id/termTitleTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+                <TextView
+                android:id="@+id/courseInstructorNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                    android:textStyle="bold"
+                android:text="CourseInstructorName"
+                app:layout_constraintTop_toBottomOf="@+id/courseInstructorNameLabelTextView"
+                tools:layout_editor_absoluteX="134dp" />
+
+                <TextView
+                    android:id="@+id/courseInstructorEmailLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:text="Course Instructor Email:"
+                    app:layout_constraintTop_toBottomOf="@+id/courseInstructorNameTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+            <TextView
+                android:id="@+id/courseInstructorEmailTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="CourseInstructorEmail"
+                app:layout_constraintTop_toBottomOf="@+id/courseInstructorEmailLabelTextView"
+                tools:layout_editor_absoluteX="163dp" />
+
+                <TextView
+                    android:id="@+id/courseInstructorPhoneLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:text="Course Instructor Phone:"
+                    app:layout_constraintTop_toBottomOf="@+id/courseInstructorEmailTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+            <TextView
+                android:id="@+id/courseInstructorPhoneTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="CourseInstructorPhone"
+                app:layout_constraintTop_toBottomOf="@+id/courseInstructorPhoneLabelTextView"
+                tools:layout_editor_absoluteX="163dp" />
+
+                <TextView
+                    android:id="@+id/courseStatusLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:text="Course Status:"
+                    app:layout_constraintTop_toBottomOf="@+id/courseInstructorPhoneTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+            <TextView
+                android:id="@+id/courseStatusTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="CourseStatus"
+                app:layout_constraintTop_toBottomOf="@+id/courseStatusLabelTextView"
+                tools:layout_editor_absoluteX="163dp" />
+
+                <TextView
+                    android:id="@+id/courseStartDateLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:text="Course Start Date:"
+                    app:layout_constraintTop_toBottomOf="@+id/courseStatusTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+            <TextView
+                android:id="@+id/courseStartDateTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="CourseStartDate"
+                app:layout_constraintTop_toBottomOf="@+id/courseStartDateLabelTextView"
+                tools:layout_editor_absoluteX="163dp" />
+
+                <Button
+                    android:id="@+id/share_course_notes_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:onClick="shareNote"
+                    android:text="Share Notes"
+                    android:textAllCaps="false" />
+
+                <TextView
+                    android:id="@+id/courseEndDateLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:text="Course Start Date:"
+                    app:layout_constraintTop_toBottomOf="@+id/courseStartDateTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+            <TextView
+                android:id="@+id/courseEndDateTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="CourseEndDate"
+                app:layout_constraintTop_toBottomOf="@+id/courseEndDateLabelTextView"
+                tools:layout_editor_absoluteX="163dp" />
+
+                <TextView
+                    android:id="@+id/courseNoteLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:text="Course Notes:"
+                    app:layout_constraintTop_toBottomOf="@+id/courseEndDateTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+            <TextView
+                android:id="@+id/courseNoteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="CourseNote"
+                app:layout_constraintTop_toBottomOf="@+id/courseNoteLabelTextView"
+                tools:layout_editor_absoluteX="163dp" />
+
+                <TextView
+                    android:id="@+id/courseAssesTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:text="Assessment associated to this course:"
+                    app:layout_constraintTop_toBottomOf="@+id/courseNoteTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/display_course_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@+id/add_new_item_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/courseAssesTextView"
+                android:paddingBottom="67dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_above="@id/edit_course_button"
+            android:layout_marginBottom="16dp">
+
+            <!-- The first button -->
+            <Button
+                android:id="@+id/set_course_alarm_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set Alarm"
+                android:textAllCaps="false"
+                android:onClick="setCourseAlarm" />
+
+            <!-- The second button -->
+
+        </LinearLayout>
+
+        <!-- The original edit_course_button -->
+        <Button
+            android:id="@+id/edit_course_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Course"
+            android:textAllCaps="false"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="editCourse" />
+
+
+    </RelativeLayout>
+
+<!--<Button-->
+<!--android:id="@+id/add_new_item_button"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--app:layout_constraintStart_toStartOf="parent"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintBottom_toBottomOf="parent"-->
+<!--android:text="Add New Item"-->
+<!--android:textAllCaps="false"-->
+<!--android:onClick="addItem" />-->
+
+<!--    </LinearLayout>-->
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

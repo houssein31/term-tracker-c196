@@ -12,7 +12,8 @@ import java.time.LocalDate;
         foreignKeys = @ForeignKey(
                 entity = Term.class,
                 parentColumns = "term_ID",
-                childColumns = "term_ID"
+                childColumns = "term_ID",
+                onDelete = ForeignKey.CASCADE
         ))
 public class Course {
 
