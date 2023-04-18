@@ -33,15 +33,4 @@ public abstract class DatabaseConn extends RoomDatabase {
         return INSTANCE;
     }
 
-
-    // Terms Database
-//    DatabaseConn db = Room.databaseBuilder(getApplicationContext(),
-//            DatabaseConn.class, "terms-database").allowMainThreadQueries().build();
-//
-//    Term term1 = new Term("term1", LocalDate.of(2023, 1, 15), LocalDate.of(2023, 2, 20));
-//    Term term2 = new Term("term2", LocalDate.of(2023, 1, 15), LocalDate.of(2023, 2, 20));
-//
-//        db.termsDao().insertAll(term1, term2);
-//
-//    List<Term> termList = db.termsDao().getAllTerms();
 }

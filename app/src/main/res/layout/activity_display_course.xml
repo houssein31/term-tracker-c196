@@ -199,14 +199,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/courseStartDateLabelTextView"
                 tools:layout_editor_absoluteX="163dp" />
 
-                <Button
-                    android:id="@+id/share_course_notes_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:onClick="shareNote"
-                    android:text="Share Notes"
-                    android:textAllCaps="false" />
 
                 <TextView
                     android:id="@+id/courseEndDateLabelTextView"
@@ -217,7 +209,7 @@
                     android:paddingLeft="8dp"
                     android:textColor="#000000"
                     android:textSize="18sp"
-                    android:text="Course Start Date:"
+                    android:text="Course End Date:"
                     app:layout_constraintTop_toBottomOf="@+id/courseStartDateTextView"
                     tools:layout_editor_absoluteX="163dp" />
 
@@ -280,6 +272,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/courseAssesTextView"
                 android:paddingBottom="67dp" />
+                <TextView
+                    android:id="@+id/space_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="25dp"
+                    android:paddingBottom="80dp"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/display_course_recyclerView"
+                    tools:layout_editor_absoluteX="134dp" />
+
 
         </LinearLayout>
 
@@ -290,20 +294,37 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_above="@id/edit_course_button"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="1dp">
 
             <!-- The first button -->
             <Button
                 android:id="@+id/set_course_alarm_button"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Set Alarm"
                 android:textAllCaps="false"
-                android:onClick="setCourseAlarm" />
+                android:onClick="setAlarmForCourse" />
+
+            <!-- A view that takes up remaining space -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <!-- The second button -->
+            <Button
+                android:id="@+id/share_course_notes_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:onClick="shareNote"
+                android:text="Share Notes"
+                android:textAllCaps="false" />
 
         </LinearLayout>
+
 
         <!-- The original edit_course_button -->
         <Button

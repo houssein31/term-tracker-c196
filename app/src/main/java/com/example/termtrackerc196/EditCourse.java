@@ -58,6 +58,7 @@ public class EditCourse extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_course);
+        setTitle("Edit Course");
 
         courseTitleInput = findViewById(R.id.courseTitleInput);
         courseInstructorNameInput = findViewById(R.id.courseInstructorNameInput);
@@ -80,13 +81,12 @@ public class EditCourse extends AppCompatActivity {
         courseInstructorEmailInput.setText(course.getCourseInstructorEmail());
         courseInstructorPhoneInput.setText(course.getCourseInstructorPhone());
 
-
-        // Set the appropriate radio button based on the assessment
-        // status
-        if (course.getCourseStatus().equals("Upcoming")) {
-            courseStatusInput.check(R.id.radio_course_upcoming);
+        if (course.getCourseStatus().equals("Dropped")) {
+            courseStatusInput.check(R.id.radio_course_dropped);
         } else if (course.getCourseStatus().equals("In Progress")) {
             courseStatusInput.check(R.id.radio_course_in_progress);
+        } else if (course.getCourseStatus().equals("Plan to Take")) {
+            courseStatusInput.check(R.id.radio_course_plantotake);
         } else {
             courseStatusInput.check(R.id.radio_course_completed);
         }
@@ -96,7 +96,6 @@ public class EditCourse extends AppCompatActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        // Set the end date text when the user chooses a date
                         courseStartDateButton.setText((month + 1) + "/" + dayOfMonth + "/" + year);
                     }
                 },
@@ -110,7 +109,6 @@ public class EditCourse extends AppCompatActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        // Set the end date text when the user chooses a date
                         courseEndDateButton.setText((month + 1) + "/" + dayOfMonth + "/" + year);
                     }
                 },
@@ -119,24 +117,19 @@ public class EditCourse extends AppCompatActivity {
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         );
 
-        // Set the end date text to the assessment's current end date
         courseStartDateButton.setText(course.getCourseStartDate());
         courseEndDateButton.setText(course.getCourseEndDate());
 
-        // Set the onClickListener for the end date button
         courseStartDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Show the date picker dialog when the user clicks the button
                 courseStartDatePickerDialog.show();
             }
         });
 
-        // Set the onClickListener for the end date button
         courseEndDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Show the date picker dialog when the user clicks the button
                 courseEndDatePickerDialog.show();
             }
         });
@@ -152,7 +145,6 @@ public class EditCourse extends AppCompatActivity {
             termTitles[i] = allTerm.get(i).getTermTitle();
         }
 
-        // Get the index of the course with the ID of the assessment's courseID
         int selectedIndex = -1;
         for (int i = 0; i < allTerm.size(); i++) {
             if (allTerm.get(i).getTermId() == course.getTermID()) {
@@ -189,6 +181,7 @@ public class EditCourse extends AppCompatActivity {
                 String selectedTerm = autoCompleteTextView.getText().toString();
                 int termID = termDAO.getTermIDByTitle(selectedTerm);
 
+
                 courseDAO.updateCourseByID(courseID, courseTitle, courseInstructorName, courseInstructorEmail, courseInstructorPhone, courseStatus, courseStartDate, courseEndDate, courseNote, termID);
 
                 Intent intent = new Intent(EditCourse.this, DisplayCourse.class);
@@ -216,7 +209,6 @@ public class EditCourse extends AppCompatActivity {
 
 
         courseDAO.insertCourse(course);
-//        finish();
         launchMultiPageActivity();
         super.finish();
     }

@@ -63,16 +63,10 @@ public class MultiPageActivity extends AppCompatActivity implements RecyclerView
 
         setTitle(type);
 
-//        termDAO = DatabaseConn.getDBInstance(getApplicationContext()).getTermsDao();
-
         addNewItemButton = findViewById(R.id.add_new_item_button);
         addNewItemButton.setText("Add new " + type);
 
         recyclerView = findViewById(R.id.recyclerView);
-
-//        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-//        });
-
 
         initRecyclerView(type);
 
@@ -90,22 +84,17 @@ public class MultiPageActivity extends AppCompatActivity implements RecyclerView
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getAdapterPosition();
-            Toast.makeText(MultiPageActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
             switch (type){
                 case "Terms":
-//                    deletedTerm = termList.get(position);
 
                     int termID = termList.get(position).getTermId();
-//                    termList.remove(position);
-//                    termListAdapter.notifyItemRemoved(position);
-//                    termDAO.delete(termID);
+
                     if (termDAO.hasCourse(termID)) {
                         // Show a pop-up dialog if the term contains courses
                         AlertDialog.Builder builder = new AlertDialog.Builder(MultiPageActivity.this);
                         builder.setMessage("This term cannot be deleted because it has courses associated with it. Delete all courses associated with this term and then delete it.")
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        // User clicked OK button, dismiss the dialog
                                         dialog.dismiss();
                                         initRecyclerView(type);
 
@@ -116,7 +105,6 @@ public class MultiPageActivity extends AppCompatActivity implements RecyclerView
                         dialog.show();
 
                     } else {
-                        // Delete term if it doesn't contain any courses
                         termList.remove(position);
                         termListAdapter.notifyItemRemoved(position);
                         termDAO.delete(termID);
@@ -126,16 +114,12 @@ public class MultiPageActivity extends AppCompatActivity implements RecyclerView
                 case "Courses":
 
                     int courseID = courseList.get(position).getCourseID();
-//                    termList.remove(position);
-//                    termListAdapter.notifyItemRemoved(position);
-//                    termDAO.delete(termID);
+
                     if (courseDAO.hasAssessment(courseID)) {
-                        // Show a pop-up dialog if the term contains courses
                         AlertDialog.Builder builder = new AlertDialog.Builder(MultiPageActivity.this);
                         builder.setMessage("This course cannot be deleted because it has assessments associated with it. Delete all assessment associated with this course and then delete it.")
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        // User clicked OK button, dismiss the dialog
                                         dialog.dismiss();
                                         initRecyclerView(type);
 
@@ -146,14 +130,12 @@ public class MultiPageActivity extends AppCompatActivity implements RecyclerView
                         dialog.show();
 
                     } else {
-                        // Delete term if it doesn't contain any courses
                         courseList.remove(position);
                         courseListAdapter.notifyItemRemoved(position);
                         courseDAO.delete(courseID);
                     }
                     break;
                 case "Assessments":
-//                    launchAddAssessments();
                     int assessmentID = assessmentList.get(position).getAssessmentID();
                     assessmentList.remove(position);
                     assessmentListAdapter.notifyItemRemoved(position);
@@ -215,35 +197,26 @@ public class MultiPageActivity extends AppCompatActivity implements RecyclerView
 
     private void initRecyclerView(String type) {
 
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         switch (type){
             case "Terms":
                 termList = termDAO.getAllTerms();
-                Toast.makeText(this, termList.toString(), Toast.LENGTH_SHORT).show();
                 termListAdapter = new TermListAdapter(this, termList, this);
                 recyclerView.setAdapter(termListAdapter);
                 break;
             case "Courses":
-                //intiCourseRV
                 courseList = courseDAO.getAllCourses();
-                Toast.makeText(this, courseList.toString(), Toast.LENGTH_SHORT).show();
                 courseListAdapter = new CourseListAdapter(this, courseList, this);
                 recyclerView.setAdapter(courseListAdapter);
                 break;
             case "Assessments":
-                //intiAssessmentRV
                 assessmentList = assessmentDAO.getAllAssessments();
-                Toast.makeText(this, assessmentList.toString(), Toast.LENGTH_SHORT).show();
                 assessmentListAdapter = new AssessmentListAdapter(this, assessmentList, this);
                 recyclerView.setAdapter(assessmentListAdapter);
                 break;
         }
-
-
 
     }
 
@@ -268,24 +241,12 @@ public class MultiPageActivity extends AppCompatActivity implements RecyclerView
     @Override
     public void onItemClick(int position) {
 
-//        Intent intent = new Intent(MultiPageActivity.this, DisplayTerm.class);
-//
-//        intent.putExtra("TermTitle", termList.get(position).getTermTitle());
-//        intent.putExtra("TermStartDate", termList.get(position).getTermStartDate());
-//        intent.putExtra("TermEndDate", termList.get(position).getTermEndDate());
-//
-//        startActivity(intent);
-
         switch (type){
             case "Terms":
                 Intent intentTerm = new Intent(MultiPageActivity.this, DisplayTerm.class);
 
-                // WE NEED THE ID TO BE PASSED TO THE NEXT ACTIVITY
                 intentTerm.putExtra("termID", termList.get(position).getTermId());
 
-//                intentTerm.putExtra("TermTitle", termList.get(position).getTermTitle());
-//                intentTerm.putExtra("TermStartDate", termList.get(position).getTermStartDate());
-//                intentTerm.putExtra("TermEndDate", termList.get(position).getTermEndDate());
                 startActivity(intentTerm);
                 break;
             case "Courses":
@@ -296,7 +257,6 @@ public class MultiPageActivity extends AppCompatActivity implements RecyclerView
                 super.finish();
                 break;
             case "Assessments":
-                //intiAssessmentRV
                 Intent intentAssessment = new Intent(MultiPageActivity.this, DisplayAssessment.class);
 
                 intentAssessment.putExtra("assessmentID", assessmentList.get(position).getAssessmentID());

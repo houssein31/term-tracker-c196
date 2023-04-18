@@ -31,7 +31,7 @@ public class NotificationReceiver extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "Term tracker")
                 .setContentTitle(notificationTitle)
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.drawable.alarm_svgrepo_com)
                 .setContentText(notificationMessage)
                 .setAutoCancel(true);
 

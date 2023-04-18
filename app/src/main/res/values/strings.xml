@@ -3,6 +3,8 @@
     <string name="upcoming">Upcoming</string>
     <string name="inProgress">In Progress</string>
     <string name="completed">Completed</string>
+    <string name="dropped">Dropped</string>
+    <string name="planToTake">Plan to Take</string>
     <string name="performance">Performance</string>
     <string name="objective"> Objective</string>
     <string name="save_button">Save</string>

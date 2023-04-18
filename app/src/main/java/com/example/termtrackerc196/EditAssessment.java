@@ -54,6 +54,8 @@ public class EditAssessment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_assessment);
 
+        setTitle("Edit Assessment");
+
         assessmentTitleInput = findViewById(R.id.assessmentTitleInput);
         assessmentTypeInput = findViewById(R.id.asse_type_radiogroup);
         assessmentStatusInput = findViewById(R.id.asse_status_radiogroup);
@@ -67,14 +69,12 @@ public class EditAssessment extends AppCompatActivity {
         Assessment assessment = assessmentDAO.getAssessmentByID(assessmentID);
 
         assessmentTitleInput.setText(assessment.getAssessmentTitle());
-        // Set the appropriate radio button based on the assessment type
         if (assessment.getAssessmentType().equals("Performance")) {
             assessmentTypeInput.check(R.id.radio_performance);
         } else {
             assessmentTypeInput.check(R.id.radio_objective);
         }
 
-        // Set the appropriate radio button based on the assessment status
         if (assessment.getAssessmentStatus().equals("Upcoming")) {
             assessmentStatusInput.check(R.id.radio_asse_upcoming);
         } else if (assessment.getAssessmentStatus().equals("In Progress")) {
@@ -82,7 +82,6 @@ public class EditAssessment extends AppCompatActivity {
         } else {
             assessmentStatusInput.check(R.id.radio_asse_completed);
         }
-//        assessmentEndDateInput.setText(assessment.getAssessmentEndDate());
 
         assessmentEndDatePickerDialog = new DatePickerDialog(
                 EditAssessment.this,
@@ -98,14 +97,11 @@ public class EditAssessment extends AppCompatActivity {
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         );
 
-        // Set the end date text to the assessment's current end date
         assessmentEndDateInput.setText(assessment.getAssessmentEndDate());
 
-        // Set the onClickListener for the end date button
         assessmentEndDateInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Show the date picker dialog when the user clicks the button
                 assessmentEndDatePickerDialog.show();
             }
         });
@@ -121,11 +117,6 @@ public class EditAssessment extends AppCompatActivity {
             courseTitles[i] = allCourse.get(i).getCourseTitle();
         }
 
-//        Arrays.stream(courseTitles).forEach(s -> {
-//            Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-//        });
-
-        // Get the index of the course with the ID of the assessment's courseID
         int selectedIndex = -1;
         for (int i = 0; i < allCourse.size(); i++) {
             if (allCourse.get(i).getCourseID() == assessment.getCourseID()) {
@@ -181,7 +172,6 @@ public class EditAssessment extends AppCompatActivity {
 
 
         assessmentDAO.insertAssessment(assessment);
-//        finish();
         launchMultiPageActivity();
         super.finish();
     }

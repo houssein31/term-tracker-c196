@@ -1,16 +1,14 @@
 package com.example.termtrackerc196;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
-import android.os.Build;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +22,6 @@ import com.example.termtrackerc196.db.DatabaseConn;
 import com.example.termtrackerc196.db.Entities.Assessment;
 import com.example.termtrackerc196.db.Entities.Course;
 
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -89,9 +86,6 @@ public class DisplayCourse extends AppCompatActivity {
         TextView courseEndDateTexView = findViewById(R.id.courseEndDateTextView);
         TextView courseNoteTextView = findViewById(R.id.courseNoteTextView);
 
-//        Toolbar toolbar =findViewById(R.id.my_toolbar);
-//        setSupportActionBar(toolbar);
-
         termTitleTextView.setText(termTitle);
         courseTitleTextView.setText(courseTitle);
         courseInstructorNameTextView.setText(courseInstructorName);
@@ -104,12 +98,30 @@ public class DisplayCourse extends AppCompatActivity {
 
         setTitle(courseTitle);
 
-//        addNewItemButton = findViewById(R.id.edit_course_button);
-//        addNewItemButton.setText("Add new " + type);
-
         recyclerView = findViewById(R.id.display_course_recyclerView);
 
         initRecyclerView();
+
+        Button shareButton = findViewById(R.id.share_course_notes_button);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String courseNote = ((TextView) findViewById(R.id.courseNoteTextView)).getText().toString();
+
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:"));
+//                intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "recipient@example.com" });
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Course Note");
+                intent.putExtra(Intent.EXTRA_TEXT, courseNote);
+                startActivity(Intent.createChooser(intent, ""));
+
+
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+
+            }
+        });
 
         Button editCourseButton = findViewById(R.id.edit_course_button);
         editCourseButton.setOnClickListener(v -> {
@@ -126,7 +138,7 @@ public class DisplayCourse extends AppCompatActivity {
             super.finish();
         });
 
-        notificationChannel();
+        notificationChan();
 
     }
 
@@ -146,7 +158,6 @@ public class DisplayCourse extends AppCompatActivity {
         assessmentListAdapter = new AssessmentListAdapter(this, assessments, new RecyclerViewInterface() {
             @Override
             public void onItemClick(int position) {
-//                Toast.makeText(DisplayTerm.this, "On Item Click message", Toast.LENGTH_SHORT).show();
 
                 Intent intentAssessment = new Intent(DisplayCourse.this, DisplayAssessment.class);
 
@@ -160,46 +171,45 @@ public class DisplayCourse extends AppCompatActivity {
 
     }
 
-    private void notificationChannel(){
-        CharSequence name = "Course alarm";
-        String description = "Course alarm notification";
-        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+    private void notificationChan(){
+        CharSequence seqName = "Course alarm";
+        String shortDescription = "Course alarm notification";
+        int important = NotificationManager.IMPORTANCE_DEFAULT;
 
-        NotificationChannel channel = new NotificationChannel("Term tracker", name, importance);
-        channel.setDescription(description);
-
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
-        notificationManager.createNotificationChannel(channel);
+        NotificationChannel notifChannel = new NotificationChannel("Term tracker", seqName, important);
+        notifChannel.setDescription(shortDescription);
+        NotificationManager notifManager = getSystemService(NotificationManager.class);
+        notifManager.createNotificationChannel(notifChannel);
     }
 
-    public void setCourseAlarm(View view){
-        String date = course.getCourseStartDate();
-        String alarmTitle = "THIS IS THE TITLE ";
+    public void setAlarmForCourse(View view){
+        String startDate = course.getCourseStartDate();
+        String firstLine = "Get ready for course ";
         String courseTitle = course.getCourseTitle();
-        String message = " THIS IS THE MESSAGE ";
+        String secondLine = " starting on  ";
 
-        scheduleNotification(course.getCourseID(), date, courseTitle, alarmTitle, message);
+        scheduleNotification(course.getCourseID(), startDate, courseTitle, firstLine, secondLine);
 
-        date = course.getCourseEndDate();
-        alarmTitle = " THIS IS THE 2ND TITLE ";
-        message = " THIS IS THE 2ND MESSAGE ";
-        scheduleNotification(course.getCourseID(), date, courseTitle, alarmTitle, message);
+        startDate = course.getCourseEndDate();
+        firstLine = "Course End Date Notification";
+        secondLine = " ends on ";
+        scheduleNotification(course.getCourseID(), startDate, courseTitle, firstLine, secondLine);
 
 
     }
 
     private void scheduleNotification(int courseID, String date, String courseTitle, String notificationTitle,String msg){
-        long currentDate = getCurrentDate();
-        long notificationDate = getTimeInMilliSeconds(date);
-        if(currentDate <= getTimeInMilliSeconds(date)){
-            Toast.makeText(this, "HERE!!!!!", Toast.LENGTH_SHORT).show();
-            NotificationReceiver.scheduleCourseNotification(getApplicationContext(), courseID, notificationDate, notificationTitle, courseTitle + msg + date);
+        long todaysDate = getTodaysDate();
+        long notifDate = getTimeInMilliSec(date);
+        if(todaysDate <= getTimeInMilliSec(date)){
+            Toast.makeText(this, "Schedualing ... ", Toast.LENGTH_SHORT).show();
+            NotificationReceiver.scheduleCourseNotification(getApplicationContext(), courseID, notifDate, notificationTitle, courseTitle + msg + date);
         }
     }
 
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
 
-    private static long getTimeInMilliSeconds(String dateVal){
+    private static long getTimeInMilliSec(String dateVal){
         try{
             Date date = dateFormat.parse(dateVal + TimeZone.getDefault().getDisplayName());
             return date.getTime();
@@ -208,9 +218,9 @@ public class DisplayCourse extends AppCompatActivity {
         }
     }
 
-    private static long getCurrentDate(){
-        String currentDate = dateFormat.format(new Date());
-        return getTimeInMilliSeconds(currentDate);
+    private static long getTodaysDate(){
+        String todaysDate = dateFormat.format(new Date());
+        return getTimeInMilliSec(todaysDate);
     }
 
     private void launchMultiPageActivity() {

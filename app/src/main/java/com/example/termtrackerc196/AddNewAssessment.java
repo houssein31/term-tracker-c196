@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -57,10 +58,6 @@ public class AddNewAssessment extends AppCompatActivity {
 
         autoCompleteTextView = findViewById(R.id.autoCompleteTextView);
 
-        assessmentEndDateButton.setText(getTodaysDate());
-
-//        initDatePicker();
-
         perfomanceButton = (RadioButton)findViewById(R.id.radio_performance);
         objectiveButton = (RadioButton)findViewById(R.id.radio_objective);
 
@@ -70,6 +67,8 @@ public class AddNewAssessment extends AppCompatActivity {
 
         courseDAO = DatabaseConn.getDBInstance(getApplicationContext()).getCourseDao();
         assessmentDAO = DatabaseConn.getDBInstance(getApplicationContext()).getAssessmentDao();
+
+        setTitle("Add New Assessment");
 
         allCourse = courseDAO.getAllCourses();
 
@@ -81,6 +80,30 @@ public class AddNewAssessment extends AppCompatActivity {
         adapterItems = new ArrayAdapter<String>(this, R.layout.drop_down_item, courseTitles);
 
         autoCompleteTextView.setAdapter(adapterItems);
+        //
+
+        assessmentEndDatePickerDialog = new DatePickerDialog(
+                AddNewAssessment.this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        // Set the end date text when the user chooses a date
+                        assessmentEndDateButton.setText((month + 1) + "/" + dayOfMonth + "/" + year);
+                    }
+                },
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        );
+
+        assessmentEndDateButton.setText(getTodaysDate());
+
+        assessmentEndDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                assessmentEndDatePickerDialog.show();
+            }
+        });
 
         final EditText assessmentTitleInput = findViewById(R.id.assessmentTitleInput);
         final RadioGroup assessmentTypeInput = findViewById(R.id.asse_type_radiogroup);
@@ -88,25 +111,11 @@ public class AddNewAssessment extends AppCompatActivity {
         final Button assessmentEndDateInput = findViewById(R.id.assessmentEndDatePickerButton);
         final EditText assessmentNoteInput = findViewById(R.id.assessmentNoteInput);
 
-        ////////////
-        assessmentEndDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month + 1;
-                String date = month + "/" + dayOfMonth + "/" + year;
-                assessmentEndDateButton.setText(date);
-            }
-        };
-        initDatePicker();
-
         Button saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (autoCompleteTextView.getText().toString().isEmpty()) {
-//                    Toast.makeText(getApplicationContext(), "Please select a course", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
+
                 if (assessmentTypeInput.getCheckedRadioButtonId() == -1) {
                     Toast.makeText(getApplicationContext(), "Please select an assessment type", Toast.LENGTH_SHORT).show();
                     return;
@@ -115,6 +124,12 @@ public class AddNewAssessment extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please select an assessment status", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                if (assessmentEndDateInput.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please enter an assessment end date", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
 
 
 
@@ -132,6 +147,14 @@ public class AddNewAssessment extends AppCompatActivity {
                     selectedStatusButton = completedButton.getText().toString();
                 }
 
+
+                String endDate = assessmentEndDateInput.getText().toString().trim();
+                if (endDate.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please select an end date", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
                 saveNewCourse(assessmentTitleInput.getText().toString(), selectedTypeButton, selectedStatusButton, assessmentEndDateInput.getText().toString(), assessmentNoteInput.getText().toString());
 
             }
@@ -143,21 +166,16 @@ public class AddNewAssessment extends AppCompatActivity {
     private void saveNewCourse(String assessmentTitle, String assessmentType, String assessmentStatus, String assessmentEndDate, String assessmentNote) {
 
         String selectedCourse = autoCompleteTextView.getText().toString();
-//        Toast.makeText(this, selectedCourse, Toast.LENGTH_SHORT).show();
         if (selectedCourse.trim().isEmpty() | selectedCourse.equals("Choose a Course") ) {
-            // Show an error message to the user that a course must be selected.
             Toast.makeText(this, "Please select a Course.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         courseID = courseDAO.getCourseIDByTitle(selectedCourse);
 
-
         Assessment assessment = new Assessment(courseID, assessmentTitle, assessmentType, assessmentStatus, assessmentEndDate, assessmentNote);
 
-
         assessmentDAO.insertAssessment(assessment);
-//        finish();
         launchMultiPageActivity();
         super.finish();
     }
@@ -192,42 +210,6 @@ public class AddNewAssessment extends AppCompatActivity {
     private String makeDateString(int year, int month, int day) {
         return year + "/" + month + "/" + day;
     }
-
-//
-//    private String makeDateString(int day, int month, int year) {
-//
-//        return getMonthFormat(month)  + " " + day + " " + year;
-//    }
-
-//    private String getMonthFormat(int month) {
-//
-//        if(month == 1)
-//            return "JAN";
-//        if(month == 2)
-//            return "FEB";
-//        if (month == 3)
-//            return "MAR";
-//        if (month == 4)
-//            return "APR";
-//        if (month == 5)
-//            return "MAY";
-//        if (month == 6)
-//            return "JUN";
-//        if (month == 7)
-//            return "JUL";
-//        if (month == 8)
-//            return  "AUG";
-//        if (month == 9)
-//            return "SEP";
-//        if (month == 10)
-//            return "OCT";
-//        if (month == 11)
-//            return "NOV";
-//        if (month == 12)
-//            return "DEC";
-//        return "JAN";
-//    }
-
 
     public void openAssessmentEndDatePicker(View view) {
         assessmentEndDatePickerDialog.show();

@@ -27,6 +27,8 @@ public class AddNewTerm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_term);
 
+        setTitle("Add New Term");
+
         initDatePicker();
         startDateButton = findViewById(R.id.termStartDatePickerButton);
         endDateButton = findViewById(R.id.termEndDatePickerButton);
@@ -66,9 +68,6 @@ public class AddNewTerm extends AppCompatActivity {
                 String date = makeDateString(day,month, year);
 
                 startDateButton.setText(date);
-
-//                startDateButton.setText(date);
-//                endDateButton.setText(date);
 
             }
         };

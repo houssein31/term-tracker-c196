@@ -6,221 +6,269 @@
     android:layout_height="match_parent"
     tools:context=".DisplayAssessment">
 
-
-    <TextView
-        android:id="@+id/assesTitleLabelTextView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:text="Assessment Title:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/assessmentTitleTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="25dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="Assessment Title"
-        app:layout_constraintTop_toBottomOf="@+id/assesTitleLabelTextView"
-        tools:layout_editor_absoluteX="163dp"  />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/coursesTitleLabelTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:text="Course:"
-        app:layout_constraintTop_toBottomOf="@+id/assessmentTitleTextView"
-        tools:layout_editor_absoluteX="163dp"  />
-
-    <TextView
-        android:id="@+id/courseTitleTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="25dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="Course Title"
-        app:layout_constraintTop_toBottomOf="@+id/coursesTitleLabelTextView"
-        tools:layout_editor_absoluteX="134dp" />
-
-    <TextView
-        android:id="@+id/coursesInstructorNameLabelTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:text="Course Instructor Name:"
-        app:layout_constraintTop_toBottomOf="@+id/courseTitleTextView"
-        tools:layout_editor_absoluteX="163dp"  />
-
-    <TextView
-        android:id="@+id/courseInstructorNameTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="25dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="Course Instructor Name"
-        app:layout_constraintTop_toBottomOf="@+id/coursesInstructorNameLabelTextView"
-        tools:layout_editor_absoluteX="134dp" />
-
-    <TextView
-        android:id="@+id/assessmentTypeLabelTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:text="Assessment Type:"
-        app:layout_constraintTop_toBottomOf="@+id/courseInstructorNameTextView"
-        tools:layout_editor_absoluteX="163dp"  />
-
-    <TextView
-        android:id="@+id/assessmentTypeTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="25dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="Assessment Type"
-        app:layout_constraintTop_toBottomOf="@+id/assessmentTypeLabelTextView"
-        tools:layout_editor_absoluteX="134dp" />
-
-    <TextView
-        android:id="@+id/assessmentStatusLabelTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:text="Assessment Status:"
-        app:layout_constraintTop_toBottomOf="@+id/assessmentTypeTextView"
-        tools:layout_editor_absoluteX="163dp"  />
-
-    <TextView
-        android:id="@+id/assessmentStatusTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="25dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="Assessment Status"
-        app:layout_constraintTop_toBottomOf="@+id/assessmentStatusLabelTextView"
-        tools:layout_editor_absoluteX="134dp" />
-
-    <TextView
-        android:id="@+id/assessmentEndDateLabelTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:text="Assessment Status:"
-        app:layout_constraintTop_toBottomOf="@+id/assessmentStatusTextView"
-        tools:layout_editor_absoluteX="163dp"  />
-
-    <TextView
-        android:id="@+id/assessmentEndDateTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="25dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="Assessment End Date"
-        app:layout_constraintTop_toBottomOf="@+id/assessmentEndDateLabelTextView"
-        tools:layout_editor_absoluteX="134dp" />
-
-    <TextView
-        android:id="@+id/assessmentNoteLabelTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:text="Assessment Status:"
-        app:layout_constraintTop_toBottomOf="@+id/assessmentEndDateTextView"
-        tools:layout_editor_absoluteX="163dp"  />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/assessmentNoteTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="25dp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:text="Assessment Note"
-        android:lines="3"
-        app:layout_constraintTop_toBottomOf="@+id/assessmentNoteLabelTextView" />
+                <TextView
+                    android:id="@+id/assesTitleLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingLeft="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Assessment Title:"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/share_asse_note_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Share Notes"
-        android:textAllCaps="false"
+                <TextView
+                    android:id="@+id/assessmentTitleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="25dp"
+                    android:text="Assessment Title"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/assesTitleLabelTextView"
+                    tools:layout_editor_absoluteX="163dp" />
 
-        app:layout_constraintBottom_toTopOf="@+id/set_alarm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+                <TextView
+                    android:id="@+id/coursesTitleLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingLeft="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Course:"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@+id/assessmentTitleTextView"
+                    tools:layout_editor_absoluteX="163dp" />
 
-    <Button
-        android:id="@+id/set_alarm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Set Alarm"
-        android:textAllCaps="false"
+                <TextView
+                    android:id="@+id/courseTitleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="25dp"
+                    android:text="Course Title"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/coursesTitleLabelTextView"
+                    tools:layout_editor_absoluteX="134dp" />
 
-        app:layout_constraintBottom_toTopOf="@+id/edit_assessment_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+                <TextView
+                    android:id="@+id/coursesInstructorNameLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingLeft="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Course Instructor Name:"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@+id/courseTitleTextView"
+                    tools:layout_editor_absoluteX="163dp" />
 
-    <Button
-        android:id="@+id/edit_assessment_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Edit Assessment"
-        android:textAllCaps="false"
-        android:onClick="addItem"
+                <TextView
+                    android:id="@+id/courseInstructorNameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="25dp"
+                    android:text="Course Instructor Name"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/coursesInstructorNameLabelTextView"
+                    tools:layout_editor_absoluteX="134dp" />
 
-        />
+                <TextView
+                    android:id="@+id/assessmentTypeLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingLeft="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Assessment Type:"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@+id/courseInstructorNameTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+                <TextView
+                    android:id="@+id/assessmentTypeTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="25dp"
+                    android:text="Assessment Type"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/assessmentTypeLabelTextView"
+                    tools:layout_editor_absoluteX="134dp" />
+
+                <TextView
+                    android:id="@+id/assessmentStatusLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingLeft="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Assessment Status:"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@+id/assessmentTypeTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+                <TextView
+                    android:id="@+id/assessmentStatusTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="25dp"
+                    android:text="Assessment Status"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/assessmentStatusLabelTextView"
+                    tools:layout_editor_absoluteX="134dp" />
+
+                <TextView
+                    android:id="@+id/assessmentEndDateLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingLeft="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Assessment End Date:"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@+id/assessmentStatusTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+                <TextView
+                    android:id="@+id/assessmentEndDateTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="25dp"
+                    android:text="Assessment End Date"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/assessmentEndDateLabelTextView"
+                    tools:layout_editor_absoluteX="134dp" />
+
+                <TextView
+                    android:id="@+id/assessmentNoteLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingLeft="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Assessment Note:"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@+id/assessmentEndDateTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+
+                <TextView
+                    android:id="@+id/assessmentNoteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="3"
+                    android:paddingLeft="25dp"
+                    android:text="Assessment Note"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/assessmentNoteLabelTextView" />
+
+                <TextView
+                    android:id="@+id/space_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="25dp"
+                    android:paddingBottom="80dp"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/assessmentNoteTextView"
+                    tools:layout_editor_absoluteX="134dp" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/edit_assessment_button"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/edit_assessment_button">
+
+            <!-- The first button -->
+            <Button
+                android:id="@+id/set_alarm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="setAlarmForAssessment"
+                android:text="Set Alarm"
+                android:textAllCaps="false" />
+
+            <!-- A view that takes up remaining space -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!-- The second button -->
+            <Button
+                android:id="@+id/share_asse_note_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:onClick="shareNote"
+                android:text="Share Notes"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/edit_assessment_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="shareAssessmentNote"
+            android:text="Edit Assessment"
+            android:textAllCaps="false"
+
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"   />
+
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent" -->
+
+
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

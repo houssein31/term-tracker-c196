@@ -43,14 +43,12 @@ public class DisplayTerm extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            //RECEPTION OF THE EXTRA(TERM_ID) FROM THE PREVIOUS INTENT
             termID = extras.getInt("termID");
         }
 
         termDAO = DatabaseConn.getDBInstance(getApplicationContext()).getTermDao();
         courseDAO = DatabaseConn.getDBInstance(getApplicationContext()).getCourseDao();
 
-        //CREATING AN OBJECT TERM USING THE DAO
         Term term = termDAO.getTermByID(termID);
 
         String termTitle = term.getTermTitle();
@@ -66,9 +64,6 @@ public class DisplayTerm extends AppCompatActivity {
         termEndDateTexView.setText(termEndDate);
 
         setTitle(termTitle);
-
-//        addNewItemButton = findViewById(R.id.add_new_item_button);
-//        addNewItemButton.setText("Add new " + type);
 
         recyclerView = findViewById(R.id.display_term_recyclerView);
 
@@ -95,8 +90,6 @@ public class DisplayTerm extends AppCompatActivity {
         courseListAdapter = new CourseListAdapter(this, courses, new RecyclerViewInterface() {
             @Override
             public void onItemClick(int position) {
-//                Toast.makeText(DisplayTerm.this, "On Item Click message", Toast.LENGTH_SHORT).show();
-
                 Intent intentCourse = new Intent(DisplayTerm.this, DisplayCourse.class);
 
                 intentCourse.putExtra("courseID", courses.get(position).getCourseID());
@@ -105,16 +98,6 @@ public class DisplayTerm extends AppCompatActivity {
         });
 
         recyclerView.setAdapter(courseListAdapter);
-
-
-
-
-//        termID = termDAO.getTermIDByTitle(selectedTerm);
-//
-//        courseList = courseDAO.getCoursesForTermID();
-//        Toast.makeText(this, courseList.toString(), Toast.LENGTH_SHORT).show();
-//        courseListAdapter = new CourseListAdapter(this, courseList, this);
-//        recyclerView.setAdapter(courseListAdapter);
 
     }
 

@@ -45,6 +45,7 @@ public class EditTerm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_term);
+        setTitle("Edit Term");
 
         termTitleInput = findViewById(R.id.termTitleInput);
         termStartDateButton = findViewById(R.id.termStartDatePickerButton);
@@ -63,7 +64,6 @@ public class EditTerm extends AppCompatActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        // Set the end date text when the user chooses a date
                         termStartDateButton.setText((month + 1) + "/" + dayOfMonth + "/" + year);
                     }
                 },
@@ -77,7 +77,6 @@ public class EditTerm extends AppCompatActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        // Set the end date text when the user chooses a date
                         termEndDateButton.setText((month + 1) + "/" + dayOfMonth + "/" + year);
                     }
                 },
@@ -86,24 +85,19 @@ public class EditTerm extends AppCompatActivity {
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         );
 
-        // Set the end date text to the assessment's current end date
         termStartDateButton.setText(term.getTermStartDate());
         termEndDateButton.setText(term.getTermEndDate());
 
-        // Set the onClickListener for the end date button
         termStartDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Show the date picker dialog when the user clicks the button
                 termStartDatePickerDialog.show();
             }
         });
 
-        // Set the onClickListener for the end date button
         termEndDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Show the date picker dialog when the user clicks the button
                 termEndDatePickerDialog.show();
             }
         });
