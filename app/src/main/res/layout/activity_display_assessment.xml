@@ -148,6 +148,32 @@
                     tools:layout_editor_absoluteX="134dp" />
 
                 <TextView
+                    android:id="@+id/assessmentStartDateLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingLeft="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Assessment Start Date:"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@+id/assessmentStatusTextView"
+                    tools:layout_editor_absoluteX="163dp" />
+
+                <TextView
+                    android:id="@+id/assessmentStartDateTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="25dp"
+                    android:text="Assessment Start Date"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/assessmentStartDateLabelTextView"
+                    tools:layout_editor_absoluteX="134dp" />
+
+
+                <TextView
                     android:id="@+id/assessmentEndDateLabelTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -157,7 +183,7 @@
                     android:text="Assessment End Date:"
                     android:textColor="#000000"
                     android:textSize="18sp"
-                    app:layout_constraintTop_toBottomOf="@+id/assessmentStatusTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/assessmentStartDateTextView"
                     tools:layout_editor_absoluteX="163dp" />
 
                 <TextView
@@ -225,19 +251,23 @@
 
             <!-- The first button -->
             <Button
-                android:id="@+id/set_alarm"
+                android:id="@+id/set_start_alarm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="setAlarmForAssessment"
-                android:text="Set Alarm"
+                android:onClick="setStartAlarmForAssessment"
+                android:text="Start Date Alarm"
                 android:textAllCaps="false" />
 
-            <!-- A view that takes up remaining space -->
-            <View
+            <!-- The first button -->
+            <Button
+                android:id="@+id/set_end_alarm"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="setEndAlarmForAssessment"
+                android:text="End Date Alarm"
+                android:textAllCaps="false" />
 
             <!-- The second button -->
             <Button

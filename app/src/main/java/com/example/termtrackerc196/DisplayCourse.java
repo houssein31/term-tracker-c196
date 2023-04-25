@@ -182,20 +182,25 @@ public class DisplayCourse extends AppCompatActivity {
         notifManager.createNotificationChannel(notifChannel);
     }
 
-    public void setAlarmForCourse(View view){
+    public void setAlarmForCourseStart(View view){
         String startDate = course.getCourseStartDate();
-        String firstLine = "Get ready for course ";
+        String firstLine = "Course Start Date";
         String courseTitle = course.getCourseTitle();
         String secondLine = " starting on  ";
 
         scheduleNotification(course.getCourseID(), startDate, courseTitle, firstLine, secondLine);
+    }
+    public void setAlarmForCourseEnd(View view){
 
-        startDate = course.getCourseEndDate();
-        firstLine = "Course End Date Notification";
-        secondLine = " ends on ";
+        String startDate = course.getCourseEndDate();
+        String firstLine = "Course End Date";
+        String courseTitle = course.getCourseTitle();
+        String secondLine = " ends on ";
         scheduleNotification(course.getCourseID(), startDate, courseTitle, firstLine, secondLine);
-
-
+//        startDate = course.getCourseEndDate();
+//        firstLine = "Course End Date Notification";
+//        secondLine = " ends on ";
+//        scheduleNotification(course.getCourseID(), startDate, courseTitle, firstLine, secondLine);
     }
 
     private void scheduleNotification(int courseID, String date, String courseTitle, String notificationTitle,String msg){

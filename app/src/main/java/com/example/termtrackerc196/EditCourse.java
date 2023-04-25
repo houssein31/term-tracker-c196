@@ -46,10 +46,7 @@ public class EditCourse extends AppCompatActivity {
     private Button courseStartDateButton;
     private Button courseEndDateButton;
 
-    RadioGroup radioGroup;
-    RadioButton upcomingButton, inProgressButton, completedButton;
-    String selectedTypeButton, selectedStatusButton;
-    TextView textView;
+
 
     private int courseID;
     private CourseDAO courseDAO;
@@ -192,101 +189,6 @@ public class EditCourse extends AppCompatActivity {
         });
     }
 
-    private void editCourse() {
-        Intent i = new Intent(this, EditCourse.class);
-        startActivity(i);
-        super.finish();
-    }
-
-    private void saveNewCourse(String courseTitle, String courseInstructorName, String courseInstructorEmail, String courseInstructorPhone, String courseStatus, String copurseStartDate, String courseEndDate, String courseNote) {
-
-        String selectedCourse = autoCompleteTextView.getText().toString();
-
-        termID = termDAO.getTermIDByTitle(selectedCourse);
-
-
-        Course course = new Course(termID, courseTitle, courseInstructorName, courseInstructorEmail, courseInstructorPhone, courseStatus, copurseStartDate, courseEndDate, courseNote);
-
-
-        courseDAO.insertCourse(course);
-        launchMultiPageActivity();
-        super.finish();
-    }
-
-    private String getTodaysDate() {
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        month = month +1;
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
-
-    }
-
-    private void initDatePicker() {
-
-        DatePickerDialog.OnDateSetListener startDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month= month + 1;
-                String date = makeDateString(day, month, year);
-                courseStartDateButton.setText(date);
-            }
-        };
-
-        DatePickerDialog.OnDateSetListener endDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month= month + 1;
-                String date = makeDateString(day, month, year);
-                courseEndDateButton.setText(date);
-            }
-        };
-
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-
-        int style = AlertDialog.THEME_HOLO_LIGHT;
-
-        courseStartDatePickerDialog = new DatePickerDialog(this, style, startDateSetListener, year, month, day);
-        courseEndDatePickerDialog = new DatePickerDialog(this, style, endDateSetListener, year, month, day);
-    }
-
-    private String makeDateString(int day, int month, int year) {
-
-        return getMonthFormat(month)  + " " + day + " " + year;
-    }
-
-    private String getMonthFormat(int month) {
-
-        if(month == 1)
-            return "JAN";
-        if(month == 2)
-            return "FEB";
-        if (month == 3)
-            return "MAR";
-        if (month == 4)
-            return "APR";
-        if (month == 5)
-            return "MAY";
-        if (month == 6)
-            return "JUN";
-        if (month == 7)
-            return "JUL";
-        if (month == 8)
-            return  "AUG";
-        if (month == 9)
-            return "SEP";
-        if (month == 10)
-            return "OCT";
-        if (month == 11)
-            return "NOV";
-        if (month == 12)
-            return "DEC";
-        return "JAN";
-    }
 
     public void openCourseStartDatePicker(View view) {
         courseStartDatePickerDialog.show();

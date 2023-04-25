@@ -296,21 +296,28 @@
             android:layout_above="@id/edit_course_button"
             android:layout_marginBottom="1dp">
 
+
+            <!-- The third button -->
+            <Button
+                android:id="@+id/set_course_start_alarm_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Start Date Alarm"
+                android:textAllCaps="false"
+                android:onClick="setAlarmForCourseStart" />
+
+
+
             <!-- The first button -->
             <Button
                 android:id="@+id/set_course_alarm_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Set Alarm"
+                android:text="End Date Alarm"
                 android:textAllCaps="false"
-                android:onClick="setAlarmForCourse" />
-
-            <!-- A view that takes up remaining space -->
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:onClick="setAlarmForCourseEnd" />
 
             <!-- The second button -->
             <Button
@@ -324,6 +331,7 @@
                 android:textAllCaps="false" />
 
         </LinearLayout>
+
 
 
         <!-- The original edit_course_button -->

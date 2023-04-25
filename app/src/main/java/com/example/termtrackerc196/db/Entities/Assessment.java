@@ -27,16 +27,20 @@ public class Assessment {
     private String assessmentType;
     @ColumnInfo(name = "assessment_status")
     private String assessmentStatus;
+
+    @ColumnInfo(name = "assessment_start_date")
+    private String assessmentStartDate;
     @ColumnInfo(name = "assessment_end_date")
     private String assessmentEndDate;
     @ColumnInfo(name = "assessment_note")
     private String assessmentNote;
 
-    public Assessment(int courseID, String assessmentTitle, String assessmentType, String assessmentStatus, String assessmentEndDate, String assessmentNote) {
+    public Assessment(int courseID, String assessmentTitle, String assessmentType, String assessmentStatus, String assessmentStartDate, String assessmentEndDate, String assessmentNote) {
         this.courseID = courseID;
         this.assessmentTitle = assessmentTitle;
         this.assessmentType = assessmentType;
         this.assessmentStatus = assessmentStatus;
+        this.assessmentStartDate = assessmentStartDate;
         this.assessmentEndDate = assessmentEndDate;
         this.assessmentNote = assessmentNote;
     }
@@ -79,6 +83,14 @@ public class Assessment {
 
     public void setAssessmentStatus(String assessmentStatus) {
         this.assessmentStatus = assessmentStatus;
+    }
+
+    public String getAssessmentStartDate() {
+        return assessmentStartDate;
+    }
+
+    public void setAssessmentStartDate(String assessmentStartDate) {
+        this.assessmentStartDate = assessmentStartDate;
     }
 
     public String getAssessmentEndDate() {

@@ -31,7 +31,7 @@ public class EditAssessment extends AppCompatActivity {
     private EditText assessmentTitleInput;
     private RadioGroup assessmentTypeInput;
     private RadioGroup assessmentStatusInput;
-    private Button assessmentEndDateInput;
+    private Button assessmentStartDateInput, assessmentEndDateInput;
     private EditText assessmentNoteInput;
     private int courseID;
     CourseDAO courseDAO;
@@ -39,8 +39,8 @@ public class EditAssessment extends AppCompatActivity {
     List<Course> allCourse;
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItems;
-    private DatePickerDialog assessmentEndDatePickerDialog;
-    private Button assessmentEndDateButton;
+    private DatePickerDialog assessmentStartDatePickerDialog, assessmentEndDatePickerDialog;
+    private Button assessmentStartDateButton, assessmentEndDateButton;
     RadioGroup radioGroup;
     RadioButton perfomanceButton, objectiveButton, upcomingButton, inProgressButton, completedButton;
     String selectedTypeButton, selectedStatusButton;
@@ -59,7 +59,8 @@ public class EditAssessment extends AppCompatActivity {
         assessmentTitleInput = findViewById(R.id.assessmentTitleInput);
         assessmentTypeInput = findViewById(R.id.asse_type_radiogroup);
         assessmentStatusInput = findViewById(R.id.asse_status_radiogroup);
-        assessmentEndDateInput = findViewById(R.id.assessmentEndDatePickerButton);
+        assessmentStartDateButton = findViewById(R.id.assessmentStartDatePickerButton);
+        assessmentEndDateButton = findViewById(R.id.assessmentEndDatePickerButton);
         assessmentNoteInput = findViewById(R.id.assessmentNoteInput);
 
         courseDAO = DatabaseConn.getDBInstance(getApplicationContext()).getCourseDao();
@@ -83,13 +84,13 @@ public class EditAssessment extends AppCompatActivity {
             assessmentStatusInput.check(R.id.radio_asse_completed);
         }
 
-        assessmentEndDatePickerDialog = new DatePickerDialog(
+        assessmentStartDatePickerDialog = new DatePickerDialog(
                 EditAssessment.this,
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         // Set the end date text when the user chooses a date
-                        assessmentEndDateInput.setText((month + 1) + "/" + dayOfMonth + "/" + year);
+                        assessmentStartDateButton.setText((month + 1) + "/" + dayOfMonth + "/" + year);
                     }
                 },
                 Calendar.getInstance().get(Calendar.YEAR),
@@ -97,9 +98,31 @@ public class EditAssessment extends AppCompatActivity {
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         );
 
-        assessmentEndDateInput.setText(assessment.getAssessmentEndDate());
+        assessmentEndDatePickerDialog = new DatePickerDialog(
+                EditAssessment.this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        // Set the end date text when the user chooses a date
+                        assessmentEndDateButton.setText((month + 1) + "/" + dayOfMonth + "/" + year);
+                    }
+                },
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        );
 
-        assessmentEndDateInput.setOnClickListener(new View.OnClickListener() {
+        assessmentStartDateButton.setText(assessment.getAssessmentStartDate());
+        assessmentEndDateButton.setText(assessment.getAssessmentEndDate());
+
+        assessmentStartDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                assessmentStartDatePickerDialog.show();
+            }
+        });
+
+        assessmentEndDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 assessmentEndDatePickerDialog.show();
@@ -140,12 +163,13 @@ public class EditAssessment extends AppCompatActivity {
                 String assessmentType = ((RadioButton) findViewById(selectedTypeID)).getText().toString();
                 int selectedStatusID = assessmentStatusInput.getCheckedRadioButtonId();
                 String assessmentStatus = ((RadioButton) findViewById(selectedStatusID)).getText().toString();
-                String assessmentEndDate = assessmentEndDateInput.getText().toString();
+                String assessmentStartDate = assessmentStartDateButton.getText().toString();
+                String assessmentEndDate = assessmentEndDateButton.getText().toString();
                 String assessmentNote = assessmentNoteInput.getText().toString();
                 String selectedCourse = autoCompleteTextView.getText().toString();
                 int courseID = courseDAO.getCourseIDByTitle(selectedCourse);
 
-                assessmentDAO.updateAssessmentByID(assessmentID, assessmentTitle, assessmentType, assessmentStatus, assessmentEndDate, assessmentNote, courseID);
+                assessmentDAO.updateAssessmentByID(assessmentID, assessmentTitle, assessmentType, assessmentStatus, assessmentStartDate, assessmentEndDate, assessmentNote, courseID);
 
                 Intent intent = new Intent(EditAssessment.this, DisplayAssessment.class);
                 intent.putExtra("assessmentID", assessmentID);
@@ -161,14 +185,14 @@ public class EditAssessment extends AppCompatActivity {
         super.finish();
     }
 
-    private void saveNewAssessment(String assessmentTitle, String assessmentType, String assessmentStatus, String assessmentEndDate, String assessmentNote) {
+    private void saveNewAssessment(String assessmentTitle, String assessmentType, String assessmentStatus,  String assessmentStartDate, String assessmentEndDate, String assessmentNote) {
 
         String selectedCourse = autoCompleteTextView.getText().toString();
 
         courseID = courseDAO.getCourseIDByTitle(selectedCourse);
 
 
-        Assessment assessment = new Assessment(courseID, assessmentTitle, assessmentType, assessmentStatus, assessmentEndDate, assessmentNote);
+        Assessment assessment = new Assessment(courseID, assessmentTitle, assessmentType, assessmentStatus, assessmentStartDate, assessmentEndDate, assessmentNote);
 
 
         assessmentDAO.insertAssessment(assessment);
@@ -188,6 +212,14 @@ public class EditAssessment extends AppCompatActivity {
 
     private void initDatePicker() {
 
+        DatePickerDialog.OnDateSetListener startDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month= month + 1;
+                String date = makeDateString(day, month, year);
+                assessmentStartDateButton.setText(date);
+            }
+        };
         DatePickerDialog.OnDateSetListener endDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -204,44 +236,47 @@ public class EditAssessment extends AppCompatActivity {
 
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
+        assessmentStartDatePickerDialog = new DatePickerDialog(this, style, startDateSetListener, year, month, day);
         assessmentEndDatePickerDialog = new DatePickerDialog(this, style, endDateSetListener, year, month, day);
 
     }
 
-    private String makeDateString(int day, int month, int year) {
-
-        return getMonthFormat(month)  + " " + day + " " + year;
+    private String makeDateString(int year, int month, int day) {
+        return year + "/" + month + "/" + day;
     }
 
-    private String getMonthFormat(int month) {
+//    private String getMonthFormat(int month) {
+//
+//        if(month == 1)
+//            return "JAN";
+//        if(month == 2)
+//            return "FEB";
+//        if (month == 3)
+//            return "MAR";
+//        if (month == 4)
+//            return "APR";
+//        if (month == 5)
+//            return "MAY";
+//        if (month == 6)
+//            return "JUN";
+//        if (month == 7)
+//            return "JUL";
+//        if (month == 8)
+//            return  "AUG";
+//        if (month == 9)
+//            return "SEP";
+//        if (month == 10)
+//            return "OCT";
+//        if (month == 11)
+//            return "NOV";
+//        if (month == 12)
+//            return "DEC";
+//        return "JAN";
+//    }
 
-        if(month == 1)
-            return "JAN";
-        if(month == 2)
-            return "FEB";
-        if (month == 3)
-            return "MAR";
-        if (month == 4)
-            return "APR";
-        if (month == 5)
-            return "MAY";
-        if (month == 6)
-            return "JUN";
-        if (month == 7)
-            return "JUL";
-        if (month == 8)
-            return  "AUG";
-        if (month == 9)
-            return "SEP";
-        if (month == 10)
-            return "OCT";
-        if (month == 11)
-            return "NOV";
-        if (month == 12)
-            return "DEC";
-        return "JAN";
+    public void openAssessmentStartDatePicker(View view) {
+        assessmentEndDatePickerDialog.show();
     }
-
 
     public void openAssessmentEndDatePicker(View view) {
         assessmentEndDatePickerDialog.show();

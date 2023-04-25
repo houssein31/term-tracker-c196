@@ -24,8 +24,16 @@ import com.example.termtrackerc196.db.DatabaseConn;
 import com.example.termtrackerc196.db.Entities.Course;
 import com.example.termtrackerc196.db.Entities.Term;
 
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
+import java.time.chrono.ChronoPeriod;
+import java.time.chrono.Chronology;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalField;
+import java.time.temporal.TemporalUnit;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class AddNewCourse extends AppCompatActivity {
 
@@ -106,6 +114,7 @@ public class AddNewCourse extends AppCompatActivity {
         autoCompleteTextView = findViewById(R.id.autoCompleteTextView);
 
         droppedButton = (RadioButton)findViewById(R.id.radio_dropped);
+        planToTakeButton = (RadioButton)findViewById(R.id.radio_plantotake);
 
         inProgressButton = (RadioButton)findViewById(R.id.radio_in_progress);
         completedButton = (RadioButton)findViewById(R.id.radio_completed);
@@ -178,6 +187,7 @@ public class AddNewCourse extends AppCompatActivity {
             Toast.makeText(this, "Please select a Term.", Toast.LENGTH_SHORT).show();
             return;
         }
+
 
         termID = termDAO.getTermIDByTitle(selectedTerm);
 

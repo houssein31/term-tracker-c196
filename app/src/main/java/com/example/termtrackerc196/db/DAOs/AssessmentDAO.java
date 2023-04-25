@@ -36,7 +36,7 @@ public interface AssessmentDAO {
     @Query("SELECT assessment_title FROM assessment WHERE assessment_id = :id")
     String getTitleById(int id);
 
-    @Query("UPDATE assessment SET assessment_title = :title, assessment_type = :type, assessment_status = :status, assessment_end_date = :endDate, assessment_note = :note, course_ID = :courseID WHERE assessment_id = :id")
-    void updateAssessmentByID(int id, String title, String type, String status, String endDate, String note, int courseID);
+    @Query("UPDATE assessment SET assessment_title = :title, assessment_type = :type, assessment_status = :status, assessment_start_date = :startDate, assessment_end_date = :endDate, assessment_note = :note, course_ID = :courseID WHERE assessment_id = :id")
+    void updateAssessmentByID(int id, String title, String type, String status, String startDate, String endDate, String note, int courseID);
 
 }

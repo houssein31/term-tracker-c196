@@ -59,6 +59,7 @@ public class DisplayAssessment extends AppCompatActivity {
         String assessmentTitle = assessment.getAssessmentTitle();
         String assessmentType = assessment.getAssessmentType();
         String assessmentStatus = assessment.getAssessmentStatus();
+        String assessmentStartDate = assessment.getAssessmentStartDate();
         String assessmentEndDate = assessment.getAssessmentEndDate();
         String assessmentNote = assessment.getAssessmentNote();
 
@@ -67,6 +68,7 @@ public class DisplayAssessment extends AppCompatActivity {
         TextView assessmentTitleTextView = findViewById(R.id.assessmentTitleTextView);
         TextView assessmentTypeTextView = findViewById(R.id.assessmentTypeTextView);
         TextView assessmentStatusTextView = findViewById(R.id.assessmentStatusTextView);
+        TextView assessmentStartDateTextView = findViewById(R.id.assessmentStartDateTextView);
         TextView assessmentEndDateTextView = findViewById(R.id.assessmentEndDateTextView);
         TextView assessmentNoteTextView = findViewById(R.id.assessmentNoteTextView);
 
@@ -75,6 +77,7 @@ public class DisplayAssessment extends AppCompatActivity {
         assessmentTitleTextView.setText(assessmentTitle);
         assessmentTypeTextView.setText(assessmentType);
         assessmentStatusTextView.setText(assessmentStatus);
+        assessmentStartDateTextView.setText(assessmentStartDate);
         assessmentEndDateTextView.setText(assessmentEndDate);
         assessmentNoteTextView.setText(assessmentNote);
 
@@ -109,6 +112,7 @@ public class DisplayAssessment extends AppCompatActivity {
             intent.putExtra("assessmentTitle", assessmentTitle);
             intent.putExtra("assessmentType", assessmentType);
             intent.putExtra("assessmentStatus", assessmentStatus);
+            intent.putExtra("assessmentStartDate", assessmentStartDate);
             intent.putExtra("assessmentEndDate", assessmentEndDate);
             intent.putExtra("assessmentNote", assessmentNote);
             startActivity(intent);
@@ -129,16 +133,24 @@ public class DisplayAssessment extends AppCompatActivity {
         notifManager.createNotificationChannel(notifChannel);
     }
 
-    public void setAlarmForAssessment(View view){
+    public void setStartAlarmForAssessment(View view){
+        String assessmentTitle = assessment.getAssessmentTitle();
+//        scheduleNotification(assessment.getCourseID(), startDate, assessmentTitle, firstLine, secondLine);
+
+        String startDate = assessment.getAssessmentStartDate();
+        String firstLine = "Assessment Start Date";
+        String secondLine = " starts on ";
+        scheduleNotification(assessment.getAssessmentID(), startDate, assessmentTitle, firstLine, secondLine);
+    }
+
+    public void setEndAlarmForAssessment(View view){
         String assessmentTitle = assessment.getAssessmentTitle();
 //        scheduleNotification(assessment.getCourseID(), startDate, assessmentTitle, firstLine, secondLine);
 
         String endDate = assessment.getAssessmentEndDate();
-        String firstLine = "Assessment End Date Notification";
+        String firstLine = "Assessment End Date";
         String secondLine = " ends on ";
         scheduleNotification(assessment.getAssessmentID(), endDate, assessmentTitle, firstLine, secondLine);
-
-
     }
 
     private void scheduleNotification(int courseID, String date, String courseTitle, String notificationTitle,String msg){
